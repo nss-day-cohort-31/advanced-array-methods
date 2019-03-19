@@ -17,7 +17,17 @@ const newYorkBusinesses = businesses.filter(business => {
 
 console.log(newYorkBusinesses)
 
-newYorkBusinesses.forEach(business => {
+const manufacturingBusinesses = businesses.filter(business => {
+  if (business.companyIndustry === "Manufacturing"){
+    return true
+  } else {
+    return false
+  }
+})
+
+// const manufacturingBusinesses = businesses.filter(business => business.companyIndustry === "Manufacturing")
+
+manufacturingBusinesses.forEach(business => {
   outEl.innerHTML += `
     <h2>${business.companyName}</h2>
     <section>
