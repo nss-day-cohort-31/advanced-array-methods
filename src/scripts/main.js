@@ -1,38 +1,19 @@
 // console.log(businesses);
 
 const outEl = document.querySelector("#output")
-outEl.innerHTML = "<h1>Active Businesses</h1>"
+outEl.innerHTML += "<h1>Purchasing Agents</h1>";
 
-// Array to contain all the New York businesses
-const newYorkBusinesses = businesses.filter(business => {
-  console.log(business.addressStateCode)
-  let inNewYork = false
-
-  if (business.addressStateCode === "NY") {
-      inNewYork = true
-  }
-
-  return inNewYork
+/*
+    Using map(), you extract the purchasing agent object
+    from each business and store it in a new array
+*/
+const agents = businesses.map(business => {
+    return business.purchasingAgent
 })
 
-console.log(newYorkBusinesses)
+console.table(agents)
 
-const manufacturingBusinesses = businesses.filter(business => {
-  if (business.companyIndustry === "Manufacturing"){
-    return true
-  } else {
-    return false
-  }
-})
-
-// const manufacturingBusinesses = businesses.filter(business => business.companyIndustry === "Manufacturing")
-
-manufacturingBusinesses.forEach(business => {
-  outEl.innerHTML += `
-    <h2>${business.companyName}</h2>
-    <section>
-      ${business.addressFullStreet}
-    </section>
-  `
-  outEl.innerHTML += "<hr/>"
+agents.forEach(agent => {
+  outEl.innerHTML += `<h2>${agent.nameFirst} ${agent.nameLast}</h2>`;
+  outEl.innerHTML += "<hr/>";
 });
