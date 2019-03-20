@@ -1,30 +1,13 @@
-// console.log(businesses);
+const monthlyRainfall = [23, 13, 27, 20, 20, 31, 33, 26, 19, 12, 14, 12, 10];
 
-const outEl = document.querySelector("#output");
+const totalRainfall = monthlyRainfall.reduce(
+  (totalRain, currentMonthRain) => totalRain + currentMonthRain
+);
 
-businesses.forEach(business => {
-  /* CALCULATE ORDER SUMMARY */
-  let totalOrders = business.orders.reduce(
-    (currentTotal, nextValue) => {
-      console.log(currentTotal, nextValue)
-      return (currentTotal += nextValue)
-    },
-    0
-  );
+console.log(totalRainfall);
 
-  outEl.innerHTML += `
-      <h2>
-          ${business.companyName}
-          ($${totalOrders.toFixed(2)})
-      </h2>
-      <section>
-          ${business.addressFullStreet}
-      </section>
-      <section>
-          ${business.addressCity},
-          ${business.addressStateCode}
-          ${business.addressZipCode}
-      </section>
-  `;
-  outEl.innerHTML += "<hr/>";
-});
+const words = ["The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog"]
+
+const sentence = words.reduce((fullSentence, currentWord) => fullSentence + " " + currentWord)
+
+console.log(sentence)
