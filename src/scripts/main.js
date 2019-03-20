@@ -8,12 +8,12 @@ document.querySelector("#companySearch").addEventListener("keypress", keyPressEv
       console.log("the enter key")
       /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
       const foundBusiness = businesses.find(business =>
-        business.companyName.includes(keyPressEvent.target.value)
+        business.purchasingAgent.nameFirst.includes(keyPressEvent.target.value) || business.purchasingAgent.nameLast.includes(keyPressEvent.target.value)
       );
 
       outEl.innerHTML = `
                 <h2>
-                ${foundBusiness.companyName}
+                ${foundBusiness.companyName}  
                 </h2>
                 <section>
                 ${foundBusiness.addressFullStreet}
@@ -23,6 +23,9 @@ document.querySelector("#companySearch").addEventListener("keypress", keyPressEv
                 ${foundBusiness.addressCity},
                 ${foundBusiness.addressStateCode}
                 ${foundBusiness.addressZipCode}
+                </section>
+                <section>
+                ${foundBusiness.purchasingAgent.nameFirst + " " + foundBusiness.purchasingAgent.nameLast}
                 </section>
             `;
     }
