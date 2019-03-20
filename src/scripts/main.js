@@ -1,25 +1,29 @@
 // console.log(businesses);
 
-const outEl = document.querySelector("#output")
-outEl.innerHTML += "<h1>Purchasing Agents</h1>";
+const outEl = document.querySelector("#output");
 
-/*
-    Using map(), you extract the purchasing agent object
-    from each business and store it in a new array
-*/
-const agents = businesses.map(business => {
-    return {
-      fullName: `${business.purchasingAgent.nameFirst} ${business.purchasingAgent.nameLast}`,
-      company: business.companyName,
-      phoneNumber:business.phoneWork
+document.querySelector("#companySearch").addEventListener("keypress", keyPressEvent => {
+    console.log("key was pressed")
+    if (keyPressEvent.charCode === 13) {
+      console.log("the enter key")
+      /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
+      const foundBusiness = businesses.find(business =>
+        business.companyName.includes(keyPressEvent.target.value)
+      );
+
+      outEl.innerHTML = `
+                <h2>
+                ${foundBusiness.companyName}
+                </h2>
+                <section>
+                ${foundBusiness.addressFullStreet}
+
+                </section>
+                <section>
+                ${foundBusiness.addressCity},
+                ${foundBusiness.addressStateCode}
+                ${foundBusiness.addressZipCode}
+                </section>
+            `;
     }
-})
-
-console.table(agents)
-
-agents.forEach(agent => {
-  outEl.innerHTML += `<h2>${agent.fullName}</h2>`;
-  outEl.innerHTML += `<p>${agent.company}</p>`;
-  outEl.innerHTML += `<p>${agent.phoneNumber}</p>`;
-  outEl.innerHTML += "<hr/>";
-});
+  });
